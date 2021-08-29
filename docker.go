@@ -13,7 +13,7 @@ const (
 	ON  = "ON"
 )
 
-func startDockerStatusCheckJob() {
+func startCheckDockerStatusJob() {
 	gocron.Every(config.VerificationInterval).Minute().Do(checkDockerStatus)
 	appendLog("[Job State]: Started cron job")
 	<-gocron.Start()
