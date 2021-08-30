@@ -1,0 +1,20 @@
+{
+    "verification_interval": 1,
+    "credentials": {
+        "smtp_host": "smtp.gmail.com",
+        "smtp_port": 587,
+        "password": "xxxyyy",
+        "email": "xxx_yyy@gmail.com"
+    },
+    "email": {
+        "subject": "Docker down on server 8472",
+        "html_body": "<h4>Docker is not working on server 8472</h4>",
+        "to": [
+            "xxx_yyy@gmail.com"
+        ]
+    },
+    "log": {
+        "format": "02-01-2006 15:04:05",
+        "max_file_size": 1
+    }
+}
