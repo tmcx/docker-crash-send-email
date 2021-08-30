@@ -10,10 +10,12 @@ import (
 
 const (
 	_INTERNET_ERROR_MSG = "</br>This email was attempted to be sent on %s but there was not internet.</br>"
+	_EMPTY_STRING       = ""
 )
 
 var (
 	emailAdditionalInfo string
+	lastEmailNotWasSent bool
 	emailSent           bool
 )
 
@@ -36,14 +38,16 @@ func sendEmailReportingDockerFailure() {
 		strErr := err.Error()
 
 		internetProblem := strings.Contains(strErr, "no such host")
-		if internetProblem && emailAdditionalInfo == "" {
+		if internetProblem && emailAdditionalInfo == _EMPTY_STRING {
 			emailAdditionalInfo = fmt.Sprintf(_INTERNET_ERROR_MSG, time.Now().Format(config.Log.Format))
+			lastEmailNotWasSent = true
 		}
 		appendLog("[Email]: Error: " + err.Error())
 
 	} else {
 		appendLog("[Email]: Success")
+		lastEmailNotWasSent = false
+		emailAdditionalInfo = _EMPTY_STRING
 		emailSent = true
-		emailAdditionalInfo = ""
 	}
 }

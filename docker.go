@@ -28,7 +28,7 @@ func checkDockerStatus() {
 	}
 	appendLog("[Docker State]: " + dockerState)
 
-	if dockerState == OFF && emailSent == false {
+	if dockerState == OFF && emailSent == false || lastEmailNotWasSent {
 		sendEmailReportingDockerFailure()
 	}
 }
